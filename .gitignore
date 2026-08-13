@@ -1,0 +1,6 @@
+backend/uploads/pets/*
+!backend/uploads/pets/.gitkeep
+.vscode/
+Thumbs.db
+.DS_Store
+*.log
