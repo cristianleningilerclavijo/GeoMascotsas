@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulador de collar GPS — GeoMascotas</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <span class="brand">🐾 GeoMascotas</span>
+      <nav>
+        <a href="dashboard.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" />
+            <rect x="14" y="14" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" />
+          </svg>
+          Dashboard
+        </a>
+        <a href="mascota-form.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9" /><path d="M12 8v8M8 12h8" />
+          </svg>
+          Nueva mascota
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <button id="logout-btn" class="btn btn-secondary btn-block btn-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" y1="12" x2="9" y2="12" />
+          </svg>
+          Cerrar sesión
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-area">
+      <div class="topbar">
+        <div>
+          <h1>Simulador de collar GPS</h1>
+          <p class="muted">Movimiento automático de prueba mientras no hay hardware real</p>
+        </div>
+        <div class="topbar-user">
+          <span class="status-pill">En línea</span>
+          <span id="owner-email" class="muted"></span>
+        </div>
+      </div>
+
+      <div class="main-content">
+        <p><a href="dashboard.html">&larr; Volver al dashboard</a></p>
+
+        <div class="card narrow">
+          <p class="muted">
+            Como no hay hardware real todavía, este simulador imita el collar: envía una coordenada
+            nueva cada 5 segundos (moviéndose al azar) directo a Firebase, igual que lo haría un GPS real.
+          </p>
+
+          <div id="no-token-state" class="error-box hidden">
+            Falta el token de la mascota en el enlace. Ábrelo desde el botón "Simular GPS" del dashboard.
+          </div>
+
+          <div id="simulator-controls">
+            <div class="simulator-status">
+              <span id="sim-dot" class="dot"></span>
+              <span id="sim-text">Simulación detenida</span>
+            </div>
+
+            <dl class="profile-info">
+              <dt>Envíos realizados</dt>
+              <dd id="tick-count">0</dd>
+              <dt>Última coordenada</dt>
+              <dd id="last-coords">—</dd>
+              <dt>Última hora</dt>
+              <dd id="last-time">—</dd>
+            </dl>
+
+            <div class="actions-row" style="margin-top: 20px">
+              <button id="start-btn" class="btn btn-primary">▶ Iniciar simulación</button>
+              <button id="stop-btn" class="btn btn-danger hidden">■ Detener</button>
+              <a id="public-link" class="btn btn-secondary" href="#" target="_blank" rel="noopener">
+                Abrir ficha pública en vivo
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-database-compat.js"></script>
+  <script src="../js/config.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/firebase-config.js"></script>
+  <script src="../js/simulador.js"></script>
+</body>
+</html>

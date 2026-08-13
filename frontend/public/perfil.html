@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mascota encontrada — GeoMascotas</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <span class="brand">🐾 GeoMascotas</span>
+  </nav>
+
+  <div class="container">
+    <p id="loading-state" class="muted">Cargando información de la mascota...</p>
+
+    <div id="not-found-state" class="hidden">
+      <div class="error-box"></div>
+      <p><a href="index.html">&larr; Ir al inicio</a></p>
+    </div>
+
+    <div id="profile-content" class="hidden">
+      <div id="lost-banner" class="lost-banner hidden">🚨 ESTA MASCOTA ESTÁ PERDIDA — CONTACTA AL DUEÑO</div>
+
+      <div class="card">
+        <div class="profile-header">
+          <div id="photo-container"></div>
+          <div class="profile-info">
+            <h1 id="pet-name"></h1>
+            <dl>
+              <dt>Especie</dt>
+              <dd id="pet-species"></dd>
+              <dt>Raza</dt>
+              <dd id="pet-breed"></dd>
+              <dt>Color</dt>
+              <dd id="pet-color"></dd>
+              <dt>Notas médicas</dt>
+              <dd id="pet-medical"></dd>
+            </dl>
+            <h3 style="margin-top: 16px">Contacto del dueño</h3>
+            <dl>
+              <dt>Nombre</dt>
+              <dd id="owner-name"></dd>
+              <dt>Teléfono</dt>
+              <dd id="owner-phone"></dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 20px">
+        <h2>Ubicación en vivo</h2>
+        <p id="map-status" class="muted">Conectando con el collar GPS...</p>
+        <div id="map"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-database-compat.js"></script>
+  <script src="../js/config.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/util.js"></script>
+  <script src="../js/firebase-config.js"></script>
+  <script src="../js/mapa.js"></script>
+  <script src="../js/perfil.js"></script>
+</body>
+</html>

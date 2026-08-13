@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel de Control — GeoMascotas</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <span class="brand">🐾 GeoMascotas</span>
+      <nav>
+        <a href="dashboard.html" class="active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" />
+            <rect x="14" y="14" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" />
+          </svg>
+          Dashboard
+        </a>
+        <a href="mascota-form.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9" /><path d="M12 8v8M8 12h8" />
+          </svg>
+          Nueva mascota
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <button id="logout-btn" class="btn btn-secondary btn-block btn-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" y1="12" x2="9" y2="12" />
+          </svg>
+          Cerrar sesión
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-area">
+      <div class="topbar">
+        <div>
+          <h1>Panel de Control</h1>
+          <p class="muted">Resumen general de tus mascotas registradas</p>
+        </div>
+        <div class="topbar-user">
+          <span class="status-pill">En línea</span>
+          <span id="owner-email" class="muted"></span>
+        </div>
+      </div>
+
+      <div class="main-content">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div>
+              <div class="stat-label">Total mascotas</div>
+              <div id="stat-total" class="stat-value">0</div>
+            </div>
+            <div class="stat-icon icon-total">🐾</div>
+          </div>
+          <div class="stat-card">
+            <div>
+              <div class="stat-label">Activas</div>
+              <div id="stat-activo" class="stat-value">0</div>
+            </div>
+            <div class="stat-icon icon-activo">🏠</div>
+          </div>
+          <div class="stat-card">
+            <div>
+              <div class="stat-label">Perdidas</div>
+              <div id="stat-perdido" class="stat-value">0</div>
+            </div>
+            <div class="stat-icon icon-perdido">⚠️</div>
+          </div>
+          <div class="stat-card">
+            <div>
+              <div class="stat-label">Recuperadas</div>
+              <div id="stat-recuperado" class="stat-value">0</div>
+            </div>
+            <div class="stat-icon icon-recuperado">✅</div>
+          </div>
+        </div>
+
+        <div class="top-actions">
+          <h2 style="margin: 0">Mis mascotas</h2>
+          <a href="mascota-form.html" class="btn btn-primary">+ Nueva mascota</a>
+        </div>
+
+        <p id="empty-state" class="muted hidden">
+          Todavía no registras mascotas. Crea la primera para generar su código QR.
+        </p>
+
+        <div id="pets-table-card" class="data-table-card hidden">
+          <div class="table-scroll">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Mascota</th>
+                  <th>Especie / Raza</th>
+                  <th>Color</th>
+                  <th>Estado</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody id="pets-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/util.js"></script>
+  <script src="../js/dashboard.js"></script>
+</body>
+</html>

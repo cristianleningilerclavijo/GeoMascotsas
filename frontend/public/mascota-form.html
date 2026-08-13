@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mascota — GeoMascotas</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <span class="brand">🐾 GeoMascotas</span>
+      <nav>
+        <a href="dashboard.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" />
+            <rect x="14" y="14" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" />
+          </svg>
+          Dashboard
+        </a>
+        <a href="mascota-form.html" class="active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9" /><path d="M12 8v8M8 12h8" />
+          </svg>
+          Nueva mascota
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <button id="logout-btn" class="btn btn-secondary btn-block btn-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" y1="12" x2="9" y2="12" />
+          </svg>
+          Cerrar sesión
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-area">
+      <div class="topbar">
+        <div>
+          <h1 id="form-title">Nueva mascota</h1>
+          <p class="muted">Registra los datos y genera su código QR</p>
+        </div>
+        <div class="topbar-user">
+          <span class="status-pill">En línea</span>
+          <span id="owner-email" class="muted"></span>
+        </div>
+      </div>
+
+      <div class="main-content">
+        <p><a href="dashboard.html">&larr; Volver al dashboard</a></p>
+
+        <div class="card medium">
+          <div id="error-box" class="error-box hidden"></div>
+
+          <form id="mascota-form">
+            <div class="field">
+              <label for="name">Nombre</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+
+            <div class="field">
+              <label for="species">Especie</label>
+              <select id="species" name="species">
+                <option value="perro">Perro</option>
+                <option value="gato">Gato</option>
+                <option value="otro">Otro</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="breed">Raza</label>
+              <input type="text" id="breed" name="breed" />
+            </div>
+
+            <div class="field">
+              <label for="color">Color</label>
+              <input type="text" id="color" name="color" />
+            </div>
+
+            <div class="field">
+              <label for="medical_notes">Notas médicas</label>
+              <textarea id="medical_notes" name="medical_notes" placeholder="Alergias, medicamentos, condiciones especiales..."></textarea>
+            </div>
+
+            <div class="field hidden" id="status-field">
+              <label for="status">Estado</label>
+              <select id="status" name="status">
+                <option value="activo">Activo</option>
+                <option value="perdido">Perdido</option>
+                <option value="recuperado">Recuperado</option>
+              </select>
+            </div>
+
+            <div class="field" id="photo-field">
+              <label for="photo">Foto (opcional, JPG/PNG/WEBP, máx 5MB)</label>
+              <input type="file" id="photo" name="photo" accept="image/jpeg,image/png,image/webp" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </form>
+        </div>
+
+        <div id="qr-section" class="card medium hidden" style="margin-top: 20px">
+          <h2>Código QR de la mascota</h2>
+          <p class="muted">
+            Imprime este QR y colócalo en la placa/collar. Al escanearlo, cualquier persona verá la ficha pública
+            con la última ubicación conocida.
+          </p>
+          <div class="qr-box">
+            <div id="qrcode"></div>
+          </div>
+          <div class="actions-row" style="margin-top: 16px">
+            <button id="download-qr-btn" class="btn btn-secondary">Descargar PNG</button>
+            <a id="link-ficha" class="btn btn-secondary" href="#" target="_blank" rel="noopener">Ver ficha pública</a>
+            <a id="link-simulador" class="btn btn-secondary" href="#">Simular GPS</a>
+            <button id="regenerate-qr-btn" class="btn btn-danger hidden">Regenerar QR</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="../js/config.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/uuid.js"></script>
+  <script src="../js/mascota-form.js"></script>
+</body>
+</html>
